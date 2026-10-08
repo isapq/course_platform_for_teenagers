@@ -1,8 +1,7 @@
-import { UserRepository } from "../src/repositories/user.repository";
-import { CreateUserData } from "../src/dtos/create-user.dto";
+import { UserRepository } from "../repositories/user.repository.js";
+import { CreateUserData } from "../dtos/create-user.dto.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import "dotenv/config";
 
 export class AuthService {
     private userRepository = new UserRepository();
@@ -62,6 +61,7 @@ export class AuthService {
             "user": {
                 "id": existUser.id,
                 "first_name": existUser.first_name,
+                "last_name": existUser.last_name,
                 "email": existUser.email
             }
         }
@@ -79,15 +79,19 @@ export class AuthService {
             user.password
         );
 
-        if (!passworIsValid) {
+        if (!passwordIsValid) {
             throw new Error("Senha inválida.")
         };
 
-        const chagePassword = await this.userRepository.modifyPassword(id, newPassword);
+        const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+        const chagePassword = await this.userRepository.modifyPassword(id, hashedNewPassword);
 
         return {
             "user": {
-                NÃO SEI QUEAIS INFORMAÇÕES MANDAR
+                "id": user.id,
+                "first_name": user.first_name,
+                "email": user.email
             }
         }
     }

@@ -1,0 +1,25 @@
+- rota /auth/register
+
+Informações necessárias para registro são first_name, last_name, email e password
+retorna token + objeto com id, first_name e email do user em caso de sucesso.
+
+casos de erro:
+quando já há email similar cadastrado em users retorna "Já existe cadastro com esse e-mail."
+
+- rota /auth/login
+
+Informações necessárias para login são email e password
+retorna token + objeto com id, first_name e email do user em caso de sucesso.
+
+casos de erro:
+quando não localiza em users um email correspondente, retorna "Não existe usuário com esse e-mail."
+quando localiza em users o email correspondente, mas a password não corresponde a senha cadastrada retorna "Senha inválida."
+
+- rota /auth/modifyPassword
+
+Informações necessárias para modificar a senha são id do user, oldPassword que seria a senha atual e newPassword que seria a senha nova.
+retorna objeto com id, first_name e email do user em caso de sucesso.
+
+casos de erro:
+quando não localiza em users um id correspondente, retorna "Usuário não localizado."
+quando localiza em users o id correspondente, mas a oldPassword não corresponde a senha cadastrada retorna "Senha inválida."

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
+import { ModalProvider } from "./components/modal";
+import { AuthProvider } from "@/contexts/AuthContext";
 import "./globals.css";
 
 import AppProvider from "@/providers/AppProvider";
@@ -36,9 +38,13 @@ export default function RootLayout({
       className={roboto.className}
     >
       <body>
-        <AppProvider>
-          {children}
-        </AppProvider>
+        <ModalProvider>
+          <AuthProvider>
+            <AppProvider>
+              {children}
+            </AppProvider>
+          </AuthProvider>
+        </ModalProvider>
       </body>
     </html>
   );

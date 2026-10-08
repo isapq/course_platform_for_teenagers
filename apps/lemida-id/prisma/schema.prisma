@@ -23,5 +23,21 @@ model User {
   is_active       Boolean   @default(true)
   created_at      DateTime  @default(now())
   updated_at      DateTime  @updatedAt
+
+  access_codes UserAccessesCode[]
+}
+
+model UserAccessesCode {
+  id              String   @id @default(uuid())
+  code            String
+  user_id         String
+  used            Boolean  @default(false)
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+  expires_at      DateTime
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@index([user_id])
 }
 

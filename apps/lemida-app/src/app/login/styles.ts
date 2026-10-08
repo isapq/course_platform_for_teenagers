@@ -30,13 +30,14 @@ export const loginCardSx = {
 export const loginFormSx = {
     display: "flex",
     flexDirection: "column",
-    gap: "15px",
+    justifyContent: "center",
+    gap: "10px",
     marginLeft: {
         md: "65px"
     },
     marginTop: {
         xs: "-30px",
-        md: "50px"
+        md: "5px"
     },
     alignItems: {
         xs: "center"
@@ -67,9 +68,13 @@ export const loginFieldSx = {
   },
 
   '& .MuiOutlinedInput-root': {
-    height: {
-      xs: 76,
+    minHeight: {
+      xs: 55,
       md: 38,
+    },
+  
+    maxHeight: {
+      xs: 76,
     },
 
     '&.Mui-focused fieldset': {
@@ -92,14 +97,11 @@ export const loginButtonSx = {
 };
 
 export const forgotPasswordTextSx = {
-  fontSize: {
-    xs: '15px',
-    md: '8px',
-  },
+  fontSize: 15,
   textAlign: 'right',
   marginLeft: {
     xs: '245px',
-    md: '150px',
+    md: '108px',
   },
   cursor: 'pointer',
 };
